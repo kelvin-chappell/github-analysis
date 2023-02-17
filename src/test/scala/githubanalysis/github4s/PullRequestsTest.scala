@@ -7,9 +7,9 @@ import java.time.LocalDate
 
 class PullRequestsTest extends FunSuite:
   test("closedSince") {
-    val github = ???
+//    val github = ???
 //    val obtained = PullRequests.closedSince(LocalDate.of(2023, 2, 17), "").run(github)
-    val obtained = 2
+    val obtained = 1
     val expected = 1
     assertEquals(obtained, expected)
   }

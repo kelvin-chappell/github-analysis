@@ -1,14 +1,10 @@
-import Dependencies._
-
-ThisBuild / scalaVersion     := "2.13.10"
-ThisBuild / version          := "0.1.0-SNAPSHOT"
-ThisBuild / organization     := "com.example"
-ThisBuild / organizationName := "example"
+ThisBuild / scalaVersion := "3.2.2"
 
 lazy val root = (project in file("."))
   .settings(
     name := "github-analysis",
-    libraryDependencies += munit % Test
+    libraryDependencies ++= Seq(
+      "com.47deg" %% "github4s" % "0.32.0",
+      "org.scalameta" %% "munit" % "0.7.29" % Test
+    )
   )
-
-// See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for instructions on how to publish to Sonatype.

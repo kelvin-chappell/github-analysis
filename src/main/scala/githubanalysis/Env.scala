@@ -1,4 +1,4 @@
-package githubanalysis.github4s
+package githubanalysis
 
 import scala.io
 import scala.io.BufferedSource

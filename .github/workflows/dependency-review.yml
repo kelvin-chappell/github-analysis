@@ -17,6 +17,9 @@ jobs:
         with:
           comment-summary-in-pr: always
       - name: Log vulnerable changes
+        # make sure this step runs even if the previous failed
+        if: ${{ failure() && steps.review.conclusion == 'failure' }}
+        shell: bash
         env:
           VULNERABLE_CHANGES: ${{ steps.review.outputs.vulnerable-changes }}
         run: |

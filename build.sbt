@@ -8,9 +8,6 @@ lazy val root = (project in file("."))
     libraryDependencies ++= Seq(
       "com.47deg" %% "github4s" % "0.33.3",
       "org.scalameta" %% "munit" % "1.0.3" % Test,
-      jdbc,
-      ehcache,
-      ws,
       "com.amazonaws"               % "aws-java-sdk-s3"            % awsSdkVersion,
       "com.amazonaws"               % "aws-java-sdk-ses"           % awsSdkVersion,
       "com.amazonaws"               % "aws-java-sdk-ssm"           % awsSdkVersion,

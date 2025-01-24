@@ -5,6 +5,7 @@ lazy val root = (project in file("."))
   .settings(
     name := "github-analysis",
     scalaVersion := "2.13.3",
+    scalacOptions += "-source:3",
     libraryDependencies ++= Seq(
       "com.47deg" %% "github4s" % "0.33.3",
       "org.scalameta" %% "munit" % "1.0.3" % Test,

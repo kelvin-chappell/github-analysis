@@ -7,7 +7,7 @@ lazy val root = (project in file("."))
     scalaVersion := "2.13.3",
     scalacOptions += "-Xsource:3",
     libraryDependencies ++= Seq(
-      "com.47deg" %% "github4s" % "0.33.3",
+      "com.47deg" %% "github4s" % "0.33.2",
       "org.scalameta" %% "munit" % "1.0.3" % Test,
       "com.amazonaws"               % "aws-java-sdk-s3"            % awsSdkVersion,
       "com.amazonaws"               % "aws-java-sdk-ses"           % awsSdkVersion,

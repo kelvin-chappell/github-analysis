@@ -13,5 +13,6 @@ jobs:
           distribution: corretto
           java-version: 11
           cache: sbt
+      - uses: sbt/setup-sbt@v1
       - name: Build and test
         run: sbt test

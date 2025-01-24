@@ -13,6 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: sbt/setup-sbt@v1
       - uses: scalacenter/sbt-dependency-submission@v2
+        id: submit
       - uses: actions/dependency-review-action@v4
         id: review
         with:
@@ -31,4 +32,11 @@ jobs:
           DEP_CHANGES: ${{ steps.review.outputs.dependency-changes }}
         run: |
           echo "$DEP_CHANGES" | jq
+      - name: Log dependency graph snapshot of current commit
+        if: always()
+        shell: bash
+        env:
+          SNAPSHOT: ${{ steps.submit.outputs.snapshot-json-path }}
+        run: |
+          echo "$SNAPSHOT" | jq
   

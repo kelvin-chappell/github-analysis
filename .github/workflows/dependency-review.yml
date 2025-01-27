@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: sbt/setup-sbt@v1
-      - uses: scalacenter/sbt-dependency-submission@v2
+      - uses: scalacenter/sbt-dependency-submission@v3
       - uses: actions/dependency-review-action@v4
         with:
           comment-summary-in-pr: always

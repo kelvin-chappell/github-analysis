@@ -48,14 +48,15 @@ echo "Installation ID: $INSTALLATION_ID"
 USER_ID=$(gh api "/users/${APP_SLUG}[bot]" --jq .id)
 echo "Bot user ID: $USER_ID"
 
-# Get installation access token
-echo "Getting installation access token..."
-ACCESS_TOKEN_RESPONSE=$(gh api "/app/installations/${INSTALLATION_ID}/access_tokens" --method POST --header "Authorization: Bearer ${JWT_TOKEN}")
+# Get installation access token with restricted permissions
+echo "Getting installation access token with restricted permissions..."
+ACCESS_TOKEN_RESPONSE=$(gh api "/app/installations/${INSTALLATION_ID}/access_tokens" \
+    --method POST \
+    --header "Authorization: Bearer ${JWT_TOKEN}" \
+    --input - <<< '{"permissions":{"metadata":"read","contents":"write"}}')
 ACCESS_TOKEN=$(echo "$ACCESS_TOKEN_RESPONSE" | jq -r '.token')
 
 echo "Access token obtained"
-
-# Subsequent git commands use github app credentials
 
 # Prepare workspace
 cd ~/Desktop/tmp || exit 1
@@ -80,6 +81,8 @@ git config --local user.email "${USER_ID}+${APP_SLUG}[bot]@users.noreply.github.
 
 echo "Git configuration complete"
 
+# Subsequent git commands use github app credentials
+
 # Work with the repository
 git checkout main
 echo "Current branch: $(git branch --show-current)"
@@ -90,7 +93,7 @@ git add testdoc.md
 git status
 
 echo "Committing changes..."
-git commit -m "Testing github app permissions - $(date)"
+git commit -m "Testing github app permissions"
 
 echo "Pushing to remote..."
 git push origin main

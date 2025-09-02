@@ -35,11 +35,17 @@ ACCESS_TOKEN_RESPONSE=$(gh api "/app/installations/${INSTALLATION_ID}/access_tok
 ACCESS_TOKEN=$(echo "$ACCESS_TOKEN_RESPONSE" | jq -r '.token')
 
 # Configure Git to use the access token for HTTPS authentication
-git config --global credential.helper store
-echo "https://x-access-token:${ACCESS_TOKEN}@github.com" > ~/.git-credentials
+git config --local --unset-all credential.helper store
+git config --local credential.helper store
+mkdir -p .git
+echo "https://x-access-token:${ACCESS_TOKEN}@github.com" > .git/git-credentials
+git config --local credential.helper "store --file=.git/git-credentials"
 
-git config --global user.name "${APP_SLUG}[bot]"
-git config --global user.email "${USER_ID}+${APP_SLUG}[bot]@users.noreply.github.com"
+# Force HTTPS remote URL to ensure token is used
+git remote set-url origin "https://github.com/${OWNER}/${REPO}.git"
+
+git config --local user.name "${APP_SLUG}[bot]"
+git config --local user.email "${USER_ID}+${APP_SLUG}[bot]@users.noreply.github.com"
 
 # Subsequent git commands use github app credentials
 git status

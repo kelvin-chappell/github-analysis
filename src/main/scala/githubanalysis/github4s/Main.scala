@@ -17,7 +17,7 @@ def main(): Unit =
       repoName = "identity"
     )
     .map(_.map {
-      case Left(e) => IO.println(s"Something went wrong: ${e.getMessage}")
+      case Left(e)    => IO.println(s"Something went wrong: ${e.getMessage}")
       case Right(prs) =>
         IO.pure(
           prs.foreach(pr =>

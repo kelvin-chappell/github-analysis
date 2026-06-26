@@ -15,4 +15,6 @@ jobs:
       - uses: scalacenter/sbt-dependency-submission@v3
       - uses: actions/dependency-review-action@v5
         with:
+          fail-on-scopes: runtime, development
+          show-patched-versions: true
           comment-summary-in-pr: always

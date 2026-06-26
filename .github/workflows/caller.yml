@@ -1,8 +1,0 @@
-name: Dependency Review Central
-
-on: workflow_dispatch
-
-jobs:
-  call-dependency-review:
-    uses: kelvin-chappell/.github/.github/workflows/dependency-review.yml@main
-      

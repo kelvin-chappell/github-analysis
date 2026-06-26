@@ -1,4 +1,4 @@
-name: Dependency Review
+name: Dependency Review Central
 
 on: workflow_dispatch
 

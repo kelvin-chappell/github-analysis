@@ -13,6 +13,6 @@ jobs:
           distribution: corretto
           java-version: 17
           cache: sbt
-      - uses: sbt/setup-sbt@v1.5.9
+      - uses: sbt/setup-sbt@v1.5.11
       - name: Build and test
         run: sbt test
